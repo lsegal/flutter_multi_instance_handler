@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
@@ -54,7 +53,7 @@ class InstanceController {
   }
 
   void _initChannel() {
-    channel.setMockMethodCallHandler((call) async {
+    channel.setMethodCallHandler((call) async {
       if (call.method == onSecondInstanceMethodName && callback != null) {
         final out = (call.arguments as List).map((a) => a.toString()).toList();
         callback!(out);
