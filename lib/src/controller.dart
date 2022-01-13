@@ -53,7 +53,7 @@ class InstanceController {
   }
 
   void _initChannel() {
-    channel.setMockMethodCallHandler((call) async {
+    channel.setMethodCallHandler((call) async {
       if (call.method == onSecondInstanceMethodName && callback != null) {
         final out = (call.arguments as List).map((a) => a.toString()).toList();
         callback!(out);
